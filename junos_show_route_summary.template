@@ -1,0 +1,6 @@
+Value ASN (\d+)
+Value RTRID (\S+)
+
+Start
+  ^Autonomous system number:\s+${ASN}
+  ^Router ID:\s+${RTRID}
