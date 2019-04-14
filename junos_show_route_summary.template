@@ -1,6 +1,13 @@
-Value ASN (\d+)
-Value RTRID (\S+)
+Value Filldown ASN (\d+)
+Value Filldown RTRID (\S+)
+Value INT (([a-z]+\.)?[a-z]+(\d)?\.\d+)
+Value DEST (\d+)
+Value Required ROUTES (\d+)
+Value ACTIVE (\d+)
+Value HOLDDOWN (\d+)
+Value HIDDEN (\d+)
 
 Start
   ^Autonomous system number:\s+${ASN}
-  ^Router ID:\s+${RTRID} -> Record
+  ^Router ID:\s+${RTRID}
+  ^${INT}:\s+${DEST}\s+destinations,\s+${ROUTES}\s+routes\s+\(${ACTIVE}\s+active,\s+${HOLDDOWN}\s+holddown,\s+${HIDDEN}\s+hidden\) -> Record
