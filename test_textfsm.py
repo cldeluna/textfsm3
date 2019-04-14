@@ -22,9 +22,7 @@ def some_function():
 def main():
 
     # Open the template file, and initialise a new TextFSM object with it.
-
     with open(arguments.template_file) as template_file_fh:
-        temp = textfsm.TextFSM(template_file_fh)
         fsm = textfsm.TextFSM(template_file_fh)
 
     # Read stdin until EOF, then pass this to the FSM for parsing.
@@ -33,17 +31,18 @@ def main():
 
     fsm_results = fsm.ParseText(input_data)
 
-    print("\nTextFSM Template Methods:")
-    print(dir(fsm))
-    print(f"\nFSM Values: \n\t{fsm.values}")
-    print(f"\nFSM States: \n\t{fsm.states.keys()}")
-    print(f"\nFSM States Full: \n\t{fsm.states}")
-    print(f"\nFSM Value MAP:")
-    for k,v in fsm.value_map.items():
-        print(f"\tKey: {k} \tValue: {v}")
+    if arguments.verbose:
+        print("\nTextFSM Template Methods:")
+        print(dir(fsm))
+        print(f"\nFSM Values: \n\t{fsm.values}")
+        print(f"\nFSM States: \n\t{fsm.states.keys()}")
+        print(f"\nFSM States Full: \n\t{fsm.states}")
+        print(f"\nFSM Value MAP:")
+        for k,v in fsm.value_map.items():
+            print(f"\tKey: {k} \tValue: {v}")
 
-    print(f"\nTextFSM results variable is of type {type(fsm_results)} and has standard list Methods:")
-    print(dir(fsm_results))
+        print(f"\nTextFSM results variable is of type {type(fsm_results)} and has standard list Methods:")
+        print(dir(fsm_results))
 
     print(f'\n\nTextFSM Results Header:\n{fsm.header}')
     print("="*40)
@@ -70,5 +69,7 @@ if __name__ == '__main__':
 
     parser.add_argument('template_file', help=" TextFSM Template File ")
     parser.add_argument('output_file', help=' Device data (show command) output')
+    parser.add_argument('-v', '--verbose', help='Enable all of the extra print statements used to investigate the results ', action='store_true', default=False)
     arguments = parser.parse_args()
+
     main()
