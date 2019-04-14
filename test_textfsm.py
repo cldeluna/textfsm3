@@ -64,7 +64,7 @@ def main():
 
 # Standard call to the main() function.
 if __name__ == '__main__':
-    parser = argparse.ArgumentParser(description="Script Description",
+    parser = argparse.ArgumentParser(description="This script applys a textfsm template to a text file of unstructured data (often show commands).  The resulting structured data is saved as text (output.txt) and CSV (output.csv).",
                                      epilog="Usage: ' python textfsm.py <template file> <show output file>' ")
 
     parser.add_argument('template_file', help=" TextFSM Template File ")
